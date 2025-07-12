@@ -152,7 +152,7 @@ const Spreadsheet: React.FC<SpreadsheetProps> = ({ rows = 5, cols = 9, data, set
               {Array.from({ length: cols }, (_, col) => {
                 // Assign header background color by column (custom pastel)
                 let headerBg = "bg-white";
-                let headerText = "text-gray-900";
+                const headerText = "text-gray-900";
                 if (col === 5) { headerBg = "bg-[#baf5d4]"; } // Assigned (pastel green)
                 if (col === 6 || col === 7) { headerBg = "bg-[#e6e0fa]"; } // Priority, Due Date (pastel purple)
                 if (col === 8) { headerBg = "bg-[#ffe2c6]"; } // Est. Value (pastel orange)

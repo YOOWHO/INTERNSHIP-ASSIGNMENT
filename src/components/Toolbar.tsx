@@ -10,38 +10,38 @@ const Toolbar: React.FC = () => {
       <div className="flex items-center justify-between min-h-[40px] px-2">
         {/* Left group */}
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Hide fields')}>
             <EyeOff className="w-4 h-4 text-gray-400" />
             Hide fields
           </Button>
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Sort')}>
             <ArrowUpDown className="w-4 h-4 text-gray-400" />
             Sort
           </Button>
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Filter')}>
             <Filter className="w-4 h-4 text-gray-400" />
             Filter
           </Button>
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Cell view')}>
             <Layout className="w-4 h-4 text-gray-400" />
             Cell view
           </Button>
         </div>
         {/* Right group */}
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Import')}>
             <Upload className="w-4 h-4 text-gray-400" />
             Import
           </Button>
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Export')}>
             <Download className="w-4 h-4 text-gray-400" />
             Export
           </Button>
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200">
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-gray-600 font-normal px-2 hover:bg-gray-100 focus:bg-gray-200" onClick={() => console.log('Clicked Share')}>
             <Share2 className="w-4 h-4 text-gray-400" />
             Share
           </Button>
-          <Button size="sm" className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded shadow">
+          <Button size="sm" className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded shadow" onClick={() => console.log('Clicked New Action')}>
             <Plus className="w-4 h-4 text-white" />
             New Action
           </Button>
