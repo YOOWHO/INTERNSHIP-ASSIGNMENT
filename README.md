@@ -5,8 +5,7 @@ An advanced spreadsheet application built with React 18, TypeScript, and Tailwin
 ## 🚀 Features
 
 - **Interactive Spreadsheet Grid** - Create, edit, and manage data in a familiar spreadsheet interface
-- **Formula Support** - Basic mathematical formulas and cell references
-- **Real-time Updates** - Instant cell updates and calculations
+- **Real-time Updates** - Instant cell updates
 - **Modern React Architecture** - Built with React 18 hooks and TypeScript
 - **Responsive Design** - Works across desktop and mobile devices
 - **Tailwind CSS Styling** - Clean, modern UI with utility-first CSS
@@ -65,7 +64,7 @@ src/
 │   ├── Toolbar/        # Formatting and function toolbars
 │   └── common/         # Reusable UI components
 ├── hooks/              # Custom React hooks
-├── utils/              # Utility functions and formula parser
+├── utils/              # Utility functions
 ├── types/              # TypeScript type definitions
 ├── store/              # State management
 └── styles/             # Global styles and CSS
@@ -88,29 +87,17 @@ src/
 - [x] Responsive design
 
 ### Advanced Features
-- [x] Formula parsing and evaluation
-- [x] Cell references (A1, B2, etc.)
-- [x] Mathematical operations (+, -, *, /)
-- [x] Built-in functions (SUM, AVERAGE, COUNT)
-- [x] Error handling for invalid formulas
+- [ ] Formula parsing and evaluation (not supported in this version)
+- [ ] Cell references (A1, B2, etc.)
+- [ ] Mathematical operations (+, -, *, /)
+- [ ] Built-in functions (SUM, AVERAGE, COUNT)
+- [ ] Error handling for invalid formulas
 
 ### Technical Implementation
 - [x] TypeScript for type safety
 - [x] Custom hooks for state management
 - [x] Component composition and reusability
 - [x] Modern React patterns (hooks, context)
-
-## 🧮 Formula Examples
-
-The spreadsheet supports various formulas:
-
-```
-=A1+B1          // Add two cells
-=SUM(A1:A5)     // Sum a range (if implemented)
-=AVERAGE(A1,B1,C1)  // Average of cells
-=COUNT(A1:A10)  // Count non-empty cells
-=(A1+B1)*C1     // Complex expressions
-```
 
 ## 🎨 UI/UX Features
 
@@ -125,17 +112,16 @@ The spreadsheet supports various formulas:
 ### Key Components
 - `Grid.tsx` - Main spreadsheet grid container
 - `Cell.tsx` - Individual cell component with editing capabilities
-- `FormulaParser.ts` - Handles formula evaluation and cell references
 - `useSpreadsheet.ts` - Custom hook for spreadsheet state management
 
 ### State Management
 The application uses React's built-in state management with custom hooks to handle:
-- Cell values and formulas
+- Cell values
 - Selection and navigation
-- Formula dependencies and updates
 
 ## 🚧 Future Enhancements
 
+- [ ] Formula support and parsing
 - [ ] Range selection (A1:B5)
 - [ ] More built-in functions (MIN, MAX, IF)
 - [ ] Import/Export functionality (CSV, Excel)
