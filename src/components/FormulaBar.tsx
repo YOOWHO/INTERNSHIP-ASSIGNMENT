@@ -18,13 +18,26 @@ const FormulaBar: React.FC<FormulaBarProps> = ({
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    setInputValue(cellFormula || cellValue);
-  }, [cellValue, cellFormula]);
+    setInputValue(cellFormula !== undefined ? `=${cellFormula}` : cellValue);
+  }, [cellValue, cellFormula, selectedCell]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const isFormula = inputValue.startsWith('=');
-    onUpdate(isFormula ? inputValue.slice(1) : inputValue, isFormula ? inputValue.slice(1) : undefined);
+    if (!selectedCell) return;
+    if (inputValue.startsWith('=')) {
+      onUpdate(inputValue.slice(1), inputValue.slice(1));
+    } else {
+      onUpdate(inputValue, undefined);
+    }
+  };
+
+  const handleBlur = () => {
+    if (!selectedCell) return;
+    if (inputValue.startsWith('=')) {
+      onUpdate(inputValue.slice(1), inputValue.slice(1));
+    } else {
+      onUpdate(inputValue, undefined);
+    }
   };
 
   const getColumnLabel = (col: number) => String.fromCharCode(65 + col);
@@ -47,6 +60,7 @@ const FormulaBar: React.FC<FormulaBarProps> = ({
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onBlur={handleBlur}
           placeholder="Enter value or formula (=SUM(A1:A5))"
           className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           disabled={!selectedCell}

@@ -14,90 +14,16 @@ export interface CellData {
 interface SpreadsheetProps {
   rows?: number;
   cols?: number;
+  data: Record<string, CellData>;
+  setData: React.Dispatch<React.SetStateAction<Record<string, CellData>>>;
+  selectedCell: string | null;
+  setSelectedCell: React.Dispatch<React.SetStateAction<string | null>>;
+  editingCell: string | null;
+  setEditingCell: React.Dispatch<React.SetStateAction<string | null>>;
+  updateCell: (cellId: string, value: string, formula?: string) => void;
 }
 
-const Spreadsheet: React.FC<SpreadsheetProps> = ({ rows = 5, cols = 9 }) => {
-  const [data, setData] = useState<Record<string, CellData>>(() => {
-    // Initialize with screenshot data
-    const initialData: Record<string, CellData> = {};
-    // Headers from screenshot
-    const headers = [
-      'Job Request', 'Submitted', 'Status', 'Submitter', 'URL', 'Assigned', 'Priority', 'Due Date', 'Est. Value'
-    ];
-    headers.forEach((header, col) => {
-      initialData[`0-${col}`] = { value: header, computedValue: header };
-    });
-    // Data from screenshot
-    const sampleData = [
-      [
-        'Launch social media campaign for pro...',
-        '15-11-2024',
-        'In-process',
-        'Aisha Patel',
-        'www.aishapatel...',
-        'Sophie Choudhury',
-        'Medium',
-        '20-11-2024',
-        '6,200,000 ₹'
-      ],
-      [
-        'Update press kit for company redesign',
-        '28-10-2024',
-        'Need to start',
-        'Irfan Khan',
-        'www.irfankhanp...',
-        'Tejas Pandey',
-        'High',
-        '30-10-2024',
-        '3,500,000 ₹'
-      ],
-      [
-        'Finalize user testing feedback for app...',
-        '05-12-2024',
-        'In-process',
-        'Mark Johnson',
-        'www.markjohnso...',
-        'Rachel Lee',
-        'Medium',
-        '10-12-2024',
-        '4,750,000 ₹'
-      ],
-      [
-        'Design new features for the website',
-        '10-01-2025',
-        'Complete',
-        'Emily Green',
-        'www.emilygreen...',
-        'Tom Wright',
-        'Low',
-        '15-01-2025',
-        '5,900,000 ₹'
-      ],
-      [
-        'Prepare financial report for Q4',
-        '25-01-2025',
-        'Blocked',
-        'Jessica Brown',
-        'www.jessicabro...',
-        'Kevin Smith',
-        'Low',
-        '30-01-2025',
-        '2,800,000 ₹'
-      ]
-    ];
-    sampleData.forEach((row, rowIndex) => {
-      row.forEach((cell, colIndex) => {
-        initialData[`${rowIndex + 1}-${colIndex}`] = {
-          value: cell,
-          computedValue: cell
-        };
-      });
-    });
-    return initialData;
-  });
-  
-  const [selectedCell, setSelectedCell] = useState<string | null>(null);
-  const [editingCell, setEditingCell] = useState<string | null>(null);
+const Spreadsheet: React.FC<SpreadsheetProps> = ({ rows = 5, cols = 9, data, setData, selectedCell, setSelectedCell, editingCell, setEditingCell, updateCell }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const getCellId = (row: number, col: number) => `${row}-${col}`;
@@ -106,27 +32,6 @@ const Spreadsheet: React.FC<SpreadsheetProps> = ({ rows = 5, cols = 9 }) => {
   const getCellData = (cellId: string): CellData => {
     return data[cellId] || { value: '', computedValue: '' };
   };
-
-  const updateCell = useCallback((cellId: string, value: string, formula?: string) => {
-    setData(prevData => {
-      const newData = { ...prevData };
-      newData[cellId] = {
-        value,
-        formula,
-        computedValue: formula ? evaluateFormula(formula, newData) : value
-      };
-
-      // Recalculate dependent cells (simplified)
-      Object.keys(newData).forEach(id => {
-        const cell = newData[id];
-        if (cell.formula) {
-          cell.computedValue = evaluateFormula(cell.formula, newData);
-        }
-      });
-
-      return newData;
-    });
-  }, []);
 
   const handleCellClick = (cellId: string) => {
     setSelectedCell(cellId);
